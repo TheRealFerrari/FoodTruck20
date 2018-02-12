@@ -13,7 +13,15 @@ import javax.ws.rs.core.MediaType;
 
 import com.aca.rest.model.FoodTruck;
 import com.aca.rest.service.FoodTruckService;
-
+/**
+ * The controller classes/methods are identified in the web.xml file. The 'Path'
+ * annotation maps to the URL's path resources. The 'Get' annotation identifies
+ * the HTTP method that is accepted. The 'Produces' annotation identifies the
+ * Media Types (e.g. jason,text.xml,etc) that this class method can produce.
+ * 
+ * This class/method will only accept a request with the following 1. HTTP Get
+ * 2. path '/RestApiApp/rest/movie' 3.HTTP header Accept = application/xml
+ */
 /**
  * 
  * @author Ferrari

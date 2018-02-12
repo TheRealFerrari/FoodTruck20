@@ -1,5 +1,12 @@
 package com.aca.rest.service;
 
+/**
+ * Business logic and validation for customers.
+ * 
+ * this class isn't need but useful.
+ * @author Ferrari
+ *
+ */
 import java.util.List;
 
 
