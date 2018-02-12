@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html ng-app="FoodTruck20">
+<head>
+	<title>Food Truck Search</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- <link rel="import" href="header.html"> -->
+	<meta charset="ISO-8859-1">		<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+		type="text/javascript"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"
+		type="text/javascript"></script>
+	
+	<script src="js/foodtruck.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+
+		<div ng-controller="truckCreateCtrl">
+
+		<div class="container-fluid">
+			 
+			<nav class="navbar navbar-inverse navbar-static-top">
+				<p class="navbar-text">Food Truck 20. Food Truck Location App - SuperFastCar LLC</p>
+				<ul class="nav navbar-nav">
+					<li> 
+						<a href="food_Truck_Home.html">Home</a>
+					</li>
+							
+					
+					<li class="active"> 
+						<a href="food_truck_search.html">Food Truck Search</a>
+					</li>
+					<li>
+						<a href="foodtruck_create.html">Create</a>
+					</li>
+					<li>  
+						<a href="Map.html">Food Truck Map</a>
+					</li>
+																
+				</ul>								
+			</nav>			
+			
+			<div class="FoodTruckSearch" ng-hide="hideTruckSearch">			
+				
+				<div class="header">
+					<button type="button" ng-click="getFoodTrucks()" ng-disabled="isGetFoodTrucksDisabled"
+						class="btn btn-success"> <span class="glyphicon glyphicon-refresh"></span>Discover Food Trucks</button>
+					<button type="button" ng-click="resetSearch()" ng-disabled="isClearFoodTrucksDisabled"
+						class="btn btn-warning"> <span class="glyphicon glyphicon"></span>Clear Food Truck</button>
+					<input type="text" ng-model="nameFilter" placeholder="food truck filter"
+						ng-disabled="isClearFoodTrucksDisabled">
+				</div>
+				
+				<table  ng-hide="hideFoodTruckSearchResults">
+					<tr>
+						<th></th>
+						<th>Food Truck ID</th>
+						<th>Food Truck Name</th>
+						<th>Food TruckPhone#</th>
+						<th>Food Truck Address</th>
+						<th>Food Truck City</th>
+					</tr>
+						<tr ng-repeat="truck in myFoodTrucks | filter : nameFilter">
+							<td><button ng-click="editTrucks(FoodTruck)"><span class="glyphicon glyphicon-edit"></span>Edit</button>
+							<td>{{truck.foodTruckId}}</td>
+							<td>{{truck.foodTruckName}}</td>
+							<td>{{truck.foodTruckPhoneNumber}}</td>
+							<td>{{truck.foodTruckStreetAddress}}</td>
+							<td>{{truck.foodTruckCity}}</td>
+						</tr>
+						
+				</table>
+				<br>
+							
+			</div>
+			
+			<div ng-hide="hideFoodTruckEditDelete">	
+			
+				<h4>Press 'Update' to save truck  changes.</h4>
+				<h4>Press 'Cancel' to return to customer search.</h4>		
+				
+				<div class="header">
+					<button type="button" ng-click="updateFoodTruck()" ng-disabled="isUpdateDisabled"
+						class="btn btn-success"> <span class="glyphicon glyphicon-edit"></span>Update</button>
+					<button type="button" ng-click="resetSearch()" 
+						class="btn btn-warning"> <span class="glyphicon"></span>Cancel</button>
+					
+					<p> <span id="statusId" ng-bind="updateStatus"></span></p>
+				</div>
+				
+				<form>
+					<table  class="FoodTruckCreate">						
+						<tr>							
+							<td><label for="id">ID:</label><br>
+							<p id="id" ng-bind="foodTruck.foodTruckID"></p>
+							</td>
+						</tr>						
+						<tr>							
+							<td><label for="name">Food Truck Name:</label><br>
+							<input ng-change="turnUpdateOn()" id="name" type="text" ng-model="foodTruck.foodTruckName" size=40/></td>
+						</tr>
+						<tr>							
+							<td><label for="phoneNumber">Food Truck Phone Number:</label><br>
+							<input ng-change="turnUpdateOn()" id="phoneNumber" type="text" ng-model="foodTruck.foodTruckPhoneNumber" size=15/></td>
+						</tr>						
+						<tr>							
+							<td><label for="street">Food Truck Street Address:</label><br>
+							<input ng-change="turnUpdateOn()" id="streetAddress" type="text" ng-model="foodTruck.foodTruckStreetAddress" size=40/></td>
+						</tr>
+						<tr>							
+							<td><label for="city">Food Truck City:</label><br>
+							<input ng-change="turnUpdateOn()" id="city" type="text" ng-model="foodTruck.foodTruckCity" size=15/></td>
+						</tr>
+						<tr>							
+							<td><label for="typeOfFood">Type of Food:</label><br>
+							<input ng-change="turnUpdateOn()" id="typeOfFood" type="text" ng-model="foodTruck.typeOfFood" size=40/></td>
+						</tr>														
+					</table>
+				</form>
+				<br>
+
+
+			
+			<div class="footer">Angular JS Example Copyright SuperFastCar LLC</div>
+
+		</div>	
+	</div>		
+	
+</body>
+</html>
